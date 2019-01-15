@@ -20,7 +20,7 @@ parser.add_argument('--unuse-cuda', action='store_true',
 parser.add_argument('--lr', type=float, default=0.000001)
 parser.add_argument('--epochs', type=int, default=500,
                     help='number of epochs for train')
-parser.add_argument('--batch_size', type=int, default=4,
+parser.add_argument('--batch_size', type=int, default=1,
                     help='batch size for training')
 parser.add_argument('--weight-decay', type=float, default=1e-4)
 parser.add_argument('--momentum', type=float, default=.9)
@@ -44,7 +44,7 @@ transform=transforms.Compose([
 use_cuda = torch.cuda.is_available() and not args.unuse_cuda
 args.dropout = args.dropout if args.augmentation else 0.
 
-train_data=MyData.MyDataset(maskroot=args.maskpicroot,rawroot=args.rawpicroot,datatxt='lists.txt', transform=transform)
+train_data=MyData.MyDataset(maskroot=args.maskpicroot,rawroot=args.rawpicroot,datatxt='wuhanlists.txt', transform=transform)
 data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=True)
 print(len(data_loader))
 
